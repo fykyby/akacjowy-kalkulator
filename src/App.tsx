@@ -4,8 +4,9 @@ import Navbar from "./components/Navbar";
 import Products from "./components/Products";
 import "./styles/App.css";
 
-// const os = require("os");
 // const fs = window.require("fs");
+const os = require("os");
+const storage = window.require("electron-json-storage");
 
 type Page = "List" | "Calculator" | "Products";
 
@@ -17,13 +18,7 @@ export interface ProductInt {
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("List");
-  const [products, setProducts] = useState<Array<ProductInt>>([
-    {
-      name: "test1",
-      price: 12,
-      rabat: 3,
-    },
-  ]);
+  const [products, setProducts] = useState<Array<ProductInt>>([]);
 
   const PageObj = {
     List: <List />,
@@ -31,14 +26,13 @@ export default function App() {
     Products: <Products products={products} />,
   };
 
-  // useEffect(() => {
-  //   const home = os.homedir();
-  //   const filePath = home + "/AkacjowyKalkulator/produkty.json";
-  //   if (fs.existsSync(filePath)) {
-  //     const file = JSON.parse(fs.readFile(filePath));
-  //     console.log(file);
-  //   }
-  // }, []);
+  useEffect(() => {
+    storage.setDataPath(os.homedir());
+    storage.get("produkty", (error: any, data: any) => {
+      if (error) throw error;
+      setProducts(data);
+    });
+  }, []);
 
   return (
     <div className="App">
