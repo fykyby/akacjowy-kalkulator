@@ -21,6 +21,7 @@ export default function Navbar(props: Props): JSX.Element {
         <button
           onClick={() => props.setCurrentPage("Calculator")}
           className={props.currentPage === "Calculator" ? "active" : ""}
+          disabled
         >
           <CalculatorFill />
         </button>

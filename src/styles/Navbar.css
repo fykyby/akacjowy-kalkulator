@@ -33,3 +33,11 @@
 .Navbar .buttons button > * {
   font-size: 40px;
 }
+
+.Navbar .buttons button:disabled {
+  cursor: default;
+}
+
+.Navbar .buttons button:disabled:hover {
+  background-color: var(--color1);
+}
