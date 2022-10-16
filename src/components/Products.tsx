@@ -4,8 +4,6 @@ import { PlusSquare } from "react-bootstrap-icons";
 import { ProductInt } from "../App";
 
 const os = require("os");
-const fs = window.require("fs");
-const path = window.require("path");
 const storage = window.require("electron-json-storage");
 
 interface Props {
@@ -14,15 +12,8 @@ interface Props {
 
 export default function Products(props: Props): JSX.Element {
   function saveProducts() {
-    storage.setDataPath(os.homedir());
-
+    storage.setDataPath(os.homedir() + "/SwiatAkacji");
     storage.set("produkty", props.products);
-    // const appPath = app.getAppPath();
-    // const home = os.homedir();
-    // const filePath = "/home/fykyby/AkacjowyKalkulator";
-    // const filePath = home + "/AkacjowyKalkulator/produkty.json";
-    // const filePath = path.join(__dirname, "/produkty.json");
-    // fs.writeFileSync(filePath, JSON.stringify(props.products));
   }
 
   return (

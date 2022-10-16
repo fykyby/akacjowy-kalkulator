@@ -27,10 +27,14 @@ export default function App() {
   };
 
   useEffect(() => {
-    storage.setDataPath(os.homedir());
+    storage.setDataPath(os.homedir() + "/SwiatAkacji");
     storage.get("produkty", (error: any, data: any) => {
       if (error) throw error;
-      setProducts(data);
+      if (!Array.isArray(data)) {
+        setProducts([]);
+      } else {
+        setProducts(data);
+      }
     });
   }, []);
 
