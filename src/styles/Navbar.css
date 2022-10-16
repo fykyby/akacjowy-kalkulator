@@ -1,0 +1,35 @@
+.Navbar {
+  background-color: var(--color1);
+  color: var(--color4);
+  height: 100vh;
+  width: 90px;
+  box-shadow: var(--shadow);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+}
+
+.Navbar .logo {
+  width: 100%;
+  padding-inline: 4px;
+  padding-block: 12px;
+  box-sizing: border-box;
+}
+
+.Navbar .buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.Navbar .buttons button {
+  height: 70px;
+  width: 90%;
+}
+
+.Navbar .buttons button > * {
+  font-size: 40px;
+}

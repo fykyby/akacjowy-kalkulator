@@ -1,0 +1,21 @@
+.Product td:not(:first-child) {
+  text-align: center;
+}
+
+.Product .deleteCell {
+  display: flex;
+  justify-content: center;
+
+  height: 100%;
+}
+
+.Product .deleteCell button {
+  padding: 8px;
+}
+.Product .deleteCell button > * {
+  font-size: 24px;
+}
+
+.Product .deleteCell button:hover {
+  background-color: var(--color1);
+}

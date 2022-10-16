@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import List from "./components/List";
+import Navbar from "./components/Navbar";
+import Products from "./components/Products";
+import "./styles/App.css";
 
-function App() {
+// const os = require("os");
+// const fs = window.require("fs");
+
+type Page = "List" | "Calculator" | "Products";
+
+export interface ProductInt {
+  name: string;
+  price: number;
+  rabat: number;
+}
+
+export default function App() {
+  const [currentPage, setCurrentPage] = useState<Page>("List");
+  const [products, setProducts] = useState<Array<ProductInt>>([
+    {
+      name: "test1",
+      price: 12,
+      rabat: 3,
+    },
+  ]);
+
+  const PageObj = {
+    List: <List />,
+    Calculator: undefined,
+    Products: <Products products={products} />,
+  };
+
+  // useEffect(() => {
+  //   const home = os.homedir();
+  //   const filePath = home + "/AkacjowyKalkulator/produkty.json";
+  //   if (fs.existsSync(filePath)) {
+  //     const file = JSON.parse(fs.readFile(filePath));
+  //     console.log(file);
+  //   }
+  // }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      {PageObj[currentPage]}
     </div>
   );
 }
-
-export default App;

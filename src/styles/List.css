@@ -1,0 +1,43 @@
+.List {
+  background-color: var(--color3);
+  flex-grow: 1;
+}
+.List .finalInfo {
+  background-color: var(--color2);
+  box-shadow: var(--shadow);
+  color: var(--color4);
+  box-sizing: border-box;
+  padding-block: 8px;
+  padding-inline: 16px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  font-size: 48px;
+}
+
+.List .itemList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 32px;
+  gap: 32px;
+}
+
+.List .addBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 16px;
+}
+
+.List .addBtn button {
+  padding: 6px;
+}
+
+.List .addBtn button > * {
+  font-size: 54px;
+}
+
+.List .addBtn button:hover {
+  background-color: var(--color1);
+}
