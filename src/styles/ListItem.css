@@ -4,9 +4,10 @@
   font-size: 20px;
   display: flex;
   max-width: var(--maxWidth);
+  width: 80%;
   min-width: 360px;
-  width: 36vw;
   padding: 16px;
+  border-radius: 10px;
 }
 
 .ListItem .left,
@@ -18,41 +19,13 @@
   color: var(--color5);
 }
 
+.ListItem .left .product {
+  width: 100%;
+}
+
 .ListItem .left .amount {
   height: 50%;
 }
-
-/* .ListItem .left .product {
-  width: 220px;
-  height: 100%;
-  font-size: 20px;
-  box-sizing: border-box;
-  height: 50%;
-  border-radius: 10px;
-  background-color: var(--color3);
-  color: var(--color5);
-  border: none;
-  padding-inline: 6px;
-} */
-
-/* .ListItem .left .amount input {
-  width: 80px;
-  height: 100%;
-  font-size: 18px;
-  margin-right: 4px;
-  padding-inline: 6px;
-  text-align: right;
-  box-sizing: border-box;
-  border-radius: 10px;
-  border: none;
-  background-color: var(--color3);
-  color: var(--color5);
-}
-
-.ListItem .left .amount input::-webkit-outer-spin-button,
-.ListItem .left .amount input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-} */
 
 .ListItem .right {
   align-items: flex-end;
@@ -73,8 +46,12 @@
 
 .ListItem .right .price {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   height: 50%;
+  width: 100%;
   font-size: 32px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

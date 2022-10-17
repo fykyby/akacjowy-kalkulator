@@ -22,7 +22,7 @@ export default function App() {
   const [products, setProducts] = useState<Array<ProductInt>>([]);
 
   const PageObj = {
-    List: <List />,
+    List: <List products={products} />,
     Calculator: undefined,
     Products: <Products products={products} setProducts={setProducts} />,
   };

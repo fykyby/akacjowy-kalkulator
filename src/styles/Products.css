@@ -32,8 +32,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
   font-size: 20px;
+  width: 80%;
   max-width: var(--maxWidth);
   background-color: var(--color2);
   padding: 12px;
