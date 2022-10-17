@@ -1,0 +1,55 @@
+.AddProduct {
+  background-color: var(--color3_dark);
+  width: 80%;
+  max-width: var(--maxWidth);
+  padding: 16px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.AddProduct .top {
+  display: flex;
+}
+
+.AddProduct .top .name {
+  width: 40%;
+  height: 40px;
+}
+
+.AddProduct .top .price {
+  width: 30%;
+  text-align: left;
+  height: 40px;
+}
+
+.AddProduct .top .rabat {
+  width: 30%;
+  text-align: left;
+  height: 40px;
+}
+
+.AddProduct .bottom {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.AddProduct .bottom button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 16px;
+}
+
+.AddProduct .bottom button {
+  padding: 6px;
+}
+
+.AddProduct .bottom button > * {
+  font-size: 44px;
+}
+
+.AddProduct .bottom button:hover {
+  background-color: var(--color1);
+}

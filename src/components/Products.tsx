@@ -11,6 +11,7 @@ const storage = window.require("electron-json-storage");
 
 interface Props {
   products: Array<ProductInt>;
+  setProducts(products: Array<ProductInt>): void;
 }
 
 export default function Products(props: Props): JSX.Element {
@@ -62,6 +63,8 @@ export default function Products(props: Props): JSX.Element {
               hide={() => {
                 setAddProductWindowVisible(false);
               }}
+              setProducts={props.setProducts}
+              products={props.products}
             />
           }
           hide={() => {

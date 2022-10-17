@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import "../styles/Modal.css";
 
 interface Props {
@@ -6,10 +7,14 @@ interface Props {
 }
 
 export default function Modal(props: Props): JSX.Element {
+  const ref = useRef(null);
+
   return (
     <div
+      ref={ref}
       className="Modal"
-      onClick={() => {
+      onClick={(e) => {
+        if (e.target !== ref.current) return;
         props.hide();
       }}
     >

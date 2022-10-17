@@ -3,7 +3,7 @@
   box-shadow: var(--shadow);
   font-size: 20px;
   display: flex;
-  max-width: 900px;
+  max-width: var(--maxWidth);
   min-width: 360px;
   width: 36vw;
   padding: 16px;
@@ -18,7 +18,11 @@
   color: var(--color5);
 }
 
-.ListItem .left .product {
+.ListItem .left .amount {
+  height: 50%;
+}
+
+/* .ListItem .left .product {
   width: 220px;
   height: 100%;
   font-size: 20px;
@@ -29,13 +33,9 @@
   color: var(--color5);
   border: none;
   padding-inline: 6px;
-}
+} */
 
-.ListItem .left .amount {
-  height: 50%;
-}
-
-.ListItem .left .amount input {
+/* .ListItem .left .amount input {
   width: 80px;
   height: 100%;
   font-size: 18px;
@@ -52,7 +52,7 @@
 .ListItem .left .amount input::-webkit-outer-spin-button,
 .ListItem .left .amount input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-}
+} */
 
 .ListItem .right {
   align-items: flex-end;

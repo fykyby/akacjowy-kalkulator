@@ -14,6 +14,7 @@ export interface ProductInt {
   name: string;
   price: number;
   rabat: number;
+  id: number | undefined;
 }
 
 export default function App() {
@@ -23,7 +24,7 @@ export default function App() {
   const PageObj = {
     List: <List />,
     Calculator: undefined,
-    Products: <Products products={products} />,
+    Products: <Products products={products} setProducts={setProducts} />,
   };
 
   useEffect(() => {

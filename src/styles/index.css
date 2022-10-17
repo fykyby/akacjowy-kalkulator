@@ -4,11 +4,13 @@
   --color1: #625424;
   --color2: #262319;
   --color3: #b2a365;
-  --color3_dark: #a09259;
+  --color3_dark: #a4955a;
   --color4: #ffff;
   --color5: #000;
 
   --shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.4);
+
+  --maxWidth: 900px;
 }
 
 body {
@@ -41,4 +43,45 @@ button > * {
 button.active,
 button:hover {
   background-color: var(--color2);
+}
+
+select {
+  width: 220px;
+  height: 100%;
+  font-size: 20px;
+  box-sizing: border-box;
+  height: 50%;
+  border-radius: 10px;
+  background-color: var(--color3);
+  color: var(--color5);
+  border: none;
+  padding-inline: 6px;
+}
+
+input {
+  width: 80px;
+  height: 100%;
+  font-size: 18px;
+  margin-right: 4px;
+  padding-inline: 6px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--color3);
+  color: var(--color5);
+}
+
+input[type="number"] {
+  text-align: right;
+}
+
+/* input:focus,
+select:focus,
+button:focus {
+  outline: 1px solid var(--color4);
+} */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
