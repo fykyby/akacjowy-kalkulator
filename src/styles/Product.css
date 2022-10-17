@@ -1,21 +1,50 @@
-.Product td:not(:first-child) {
+.Product {
+  background-color: var(--color3_dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 18px;
+  box-shadow: var(--shadow);
+}
+
+.Product div:not(:first-child) {
   text-align: center;
 }
 
-.Product .deleteCell {
+.Product > * {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Product .name {
+  width: 300px;
+}
+
+.Product .price {
+  width: 140px;
+}
+
+.Product .rabat {
+  width: 100px;
+}
+
+.Product .delete {
   display: flex;
   justify-content: center;
-
   height: 100%;
+  width: 44px;
 }
 
-.Product .deleteCell button {
+.Product .delete button {
   padding: 8px;
 }
-.Product .deleteCell button > * {
+.Product .delete button > * {
   font-size: 24px;
 }
 
-.Product .deleteCell button:hover {
+.Product .delete button:hover {
   background-color: var(--color1);
 }

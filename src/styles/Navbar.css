@@ -3,6 +3,7 @@
   color: var(--color4);
   height: 100vh;
   width: 90px;
+  min-width: 90px;
   box-shadow: var(--shadow);
   z-index: 1;
   display: flex;

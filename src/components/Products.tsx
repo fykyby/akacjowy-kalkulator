@@ -29,32 +29,28 @@ export default function Products(props: Props): JSX.Element {
         <div>Produkty</div>
         <button onClick={saveProducts}>Zapisz</button>
       </div>
-      <table className="productList">
-        <thead>
-          <tr>
-            <th className="produktColumn">Produkt</th>
-            <th className="cenaColumn">
-              Cena za m<sup>3</sup> (zł)
-            </th>
-            <th className="rabatColumn">
-              Rabat ({`>`}m<sup>3</sup>)
-            </th>
-            <th className="deleteColumn"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.products.map((data, index) => {
-            return (
-              <Product
-                data={data}
-                setProducts={props.setProducts}
-                products={props.products}
-                key={index}
-              />
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="columns">
+        <div className="produktColumn">Produkt</div>
+        <div className="cenaColumn">
+          Cena za m<sup>3</sup> (zł)
+        </div>
+        <div className="rabatColumn">
+          Rabat ({`>`}m<sup>3</sup>)
+        </div>
+        <div className="deleteColumn"></div>
+      </div>
+      <div className="productList">
+        {props.products.map((data, index) => {
+          return (
+            <Product
+              data={data}
+              setProducts={props.setProducts}
+              products={props.products}
+              key={index}
+            />
+          );
+        })}
+      </div>
       <div className="addBtn">
         <button
           onClick={() => {

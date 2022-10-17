@@ -28,21 +28,49 @@
   background-color: var(--color1);
 }
 
-.Products .productList {
-  padding: 20px;
-  width: 100%;
+.Products .columns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  font-size: 20px;
   max-width: var(--maxWidth);
-}
-.Products .productList .cenaColumn {
-  width: 160px;
+  background-color: var(--color2);
+  padding: 12px;
+  box-sizing: border-box;
+  margin-top: 32px;
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  color: var(--color4);
 }
 
-.Products .productList .rabatColumn {
-  width: 160px;
+.Products .columns > * {
+  text-align: center;
 }
 
-.Products .productList .deleteColumn {
+.Products .columns .produktColumn {
+  width: 300px;
+}
+
+.Products .columns .cenaColumn {
+  width: 140px;
+}
+
+.Products .columns .rabatColumn {
+  width: 100px;
+}
+
+.Products .columns .deleteColumn {
   width: 44px;
+}
+
+.Products .productList {
+  padding: 8px;
+  width: 80%;
+  max-width: var(--maxWidth);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .Products .productList th {

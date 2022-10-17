@@ -19,15 +19,15 @@ export default function Product(props: Props): JSX.Element {
   }
 
   return (
-    <tr className="Product">
-      <td>{props.data.name}</td>
-      <td>{props.data.price}</td>
-      <td>{props.data.rabat}</td>
-      <td className="deleteCell">
+    <div className="Product">
+      <div className="name">{props.data.name}</div>
+      <div className="price">{props.data.price}</div>
+      <div className="rabat">{props.data.rabat}</div>
+      <div className="delete">
         <button onClick={deleteProduct}>
           <Trash color="black" />
         </button>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 }
