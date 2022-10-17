@@ -19,17 +19,37 @@
   color: var(--color5);
 }
 
+.ListItem .left .bottom {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .ListItem .left .product {
   width: 100%;
 }
 
-.ListItem .left .amount {
-  height: 50%;
+.ListItem .left .bottom .volume {
+  height: 100%;
+}
+
+.ListItem .left .bottom .amount {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+}
+
+.ListItem .left .bottom .amount input {
+  text-align: center;
+  width: 40px;
 }
 
 .ListItem .right {
   align-items: flex-end;
 }
+
 .ListItem .right .deleteBtn {
   width: 36px;
   height: 50%;
