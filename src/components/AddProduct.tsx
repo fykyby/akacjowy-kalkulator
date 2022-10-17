@@ -21,7 +21,7 @@ export default function AddProduct(props: Props): JSX.Element {
       name: name,
       price: parseInt(price),
       rabat: parseInt(rabat),
-      id: undefined,
+      id: 999,
     };
     const newArr = [...props.products];
     newArr.push(newProduct);

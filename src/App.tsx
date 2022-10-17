@@ -14,7 +14,7 @@ export interface ProductInt {
   name: string;
   price: number;
   rabat: number;
-  id: number | undefined;
+  id: number;
 }
 
 export default function App() {
@@ -37,7 +37,7 @@ export default function App() {
         setProducts(data);
       }
     });
-  }, []);
+  }, [currentPage]);
 
   return (
     <div className="App">
