@@ -16,7 +16,6 @@ interface Props {
 
 export default function Products(props: Props): JSX.Element {
   const [addProductWindowVisible, setAddProductWindowVisible] = useState(false);
-  const [idsToDelete, setIdsToDelete] = useState<Array<number>>([]);
 
   function saveProducts() {
     storage.setDataPath(os.homedir() + "/SwiatAkacji");
