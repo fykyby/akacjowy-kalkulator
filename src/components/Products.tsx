@@ -2,6 +2,9 @@ import "../styles/Products.css";
 import Product from "./Product";
 import { PlusSquare } from "react-bootstrap-icons";
 import { ProductInt } from "../App";
+import { useState } from "react";
+import Modal from "./Modal";
+import AddProduct from "./AddProduct";
 
 const os = require("os");
 const storage = window.require("electron-json-storage");
@@ -11,6 +14,8 @@ interface Props {
 }
 
 export default function Products(props: Props): JSX.Element {
+  const [addProductWindowVisible, setAddProductWindowVisible] = useState(false);
+
   function saveProducts() {
     storage.setDataPath(os.homedir() + "/SwiatAkacji");
     storage.set("produkty", props.products);
@@ -42,10 +47,28 @@ export default function Products(props: Props): JSX.Element {
         </tbody>
       </table>
       <div className="addBtn">
-        <button>
+        <button
+          onClick={() => {
+            setAddProductWindowVisible(true);
+          }}
+        >
           <PlusSquare color="black" />
         </button>
       </div>
+      {addProductWindowVisible ? (
+        <Modal
+          element={
+            <AddProduct
+              hide={() => {
+                setAddProductWindowVisible(false);
+              }}
+            />
+          }
+          hide={() => {
+            setAddProductWindowVisible(false);
+          }}
+        />
+      ) : null}
     </div>
   );
 }
