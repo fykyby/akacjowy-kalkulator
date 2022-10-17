@@ -1,5 +1,5 @@
 {
-  "name": "akacjowykalkulator3",
+  "name": "akacjowy-kalkulator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,7 +13,7 @@
     "@types/react-dom": "^18.0.6",
     "concurrently": "^7.4.0",
     "cross-env": "^7.0.3",
-    "electron": "^21.1.1",
+    "electron-is-dev": "^2.0.0",
     "electron-json-storage": "^4.6.0",
     "react": "^18.2.0",
     "react-bootstrap-icons": "^1.9.1",
@@ -25,13 +25,32 @@
   },
   "main": "public/main.js",
   "homepage": "./",
+  "build": {
+    "appId": "com.fykyby.akacjowykalkulator",
+    "productName": "Akacjowy Kalkulator",
+    "extends": null,
+    "target": "NSIS",
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false
+    },
+    "directories": {
+      "buildResources": "assets"
+    },
+    "files": [
+      "dist/**/*",
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron:serve": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn electron:start\"",
-    "electron:build": "",
+    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/main.js",
     "electron:start": "wait-on tcp:3000 && electron ."
   },
   "eslintConfig": {
@@ -51,5 +70,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron": "^21.1.1",
+    "electron-builder": "^23.6.0"
   }
 }
