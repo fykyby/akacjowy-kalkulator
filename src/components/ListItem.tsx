@@ -2,9 +2,14 @@ import "../styles/ListItem.css";
 import { Trash } from "react-bootstrap-icons";
 import { ProductInt } from "../App";
 import { useState, useEffect } from "react";
+import { Item } from "./List";
 
 interface Props {
   products: Array<ProductInt>;
+  id: number;
+  deleteItem(id: number): void;
+  setItems(itemArr: Array<Item>): void;
+  items: Array<Item>;
 }
 
 export default function ListItem(props: Props): JSX.Element {
@@ -32,6 +37,12 @@ export default function ListItem(props: Props): JSX.Element {
       setFinalPrice(newPrice.toFixed(2));
     }
   }, [selectedProductId, volume, props.products, amount]);
+
+  useEffect(() => {
+    const newArr = [...props.items];
+    newArr[props.id].price = parseFloat(finalPrice);
+    props.setItems(newArr);
+  }, [finalPrice]);
 
   return (
     <div className="ListItem">
@@ -76,7 +87,10 @@ export default function ListItem(props: Props): JSX.Element {
         </div>
       </div>
       <div className="right">
-        <button className="deleteBtn">
+        <button
+          className="deleteBtn"
+          onClick={() => props.deleteItem(props.id)}
+        >
           <Trash color="black" />
         </button>
         <div className="price">{finalPrice} zł</div>
