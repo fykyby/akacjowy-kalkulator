@@ -1,45 +1,65 @@
 import "../styles/List.css";
 import ListItem from "./ListItem";
 import { PlusSquare } from "react-bootstrap-icons";
-import { ProductInt } from "../App";
+import { ProductInt, Item } from "../App";
 import { useState, useEffect } from "react";
 
 interface Props {
   products: Array<ProductInt>;
   rabat: number;
-}
-
-export interface Item {
-  id: number;
-  price?: number;
+  items: Array<Item>;
+  setItems(items: Array<Item>): void;
 }
 
 export default function List(props: Props): JSX.Element {
-  const [items, setItems] = useState<Array<Item>>([]);
   const [finalPrice, setFinalPrice] = useState<string>("0.00");
+  const [itemElements, setItemElements] = useState<Array<JSX.Element>>();
 
   useEffect(() => {
+    console.log(props.items);
+
+    const newElements = props.items.map((item) => {
+      return (
+        <ListItem
+          products={props.products}
+          id={item.id}
+          deleteItem={deleteItem}
+          setItems={props.setItems}
+          items={props.items}
+          key={item.id}
+          rabat={props.rabat}
+        />
+      );
+    });
+    setItemElements([...newElements]);
+
     let newPrice = 0;
-    items.forEach((item) => {
-      if (item.price === undefined) return;
-      newPrice += item.price;
+    props.items.forEach((item) => {
+      if (item.finalPrice === undefined) return;
+      newPrice += item.finalPrice;
     });
     setFinalPrice(newPrice.toFixed(2));
-  }, [items]);
+  }, [props.items]);
 
   function addItem() {
-    const newArr = [...items];
-    newArr.push({ id: newArr.length });
-    setItems(newArr);
+    const newArr = [...props.items];
+    newArr.push({
+      id: newArr.length,
+      amount: 0,
+      finalPrice: 0,
+      selectedProductId: 0,
+      volume: 0,
+    });
+    props.setItems(newArr);
   }
 
   function deleteItem(id: number) {
-    const newArr = [...items];
+    const newArr = [...props.items];
     newArr.splice(id, 1);
     newArr.forEach((item, index) => {
       item.id = index;
     });
-    setItems(newArr);
+    props.setItems(newArr);
   }
 
   return (
@@ -47,21 +67,7 @@ export default function List(props: Props): JSX.Element {
       <div className="finalInfo">
         <div className="finalPrice">{finalPrice} zł</div>
       </div>
-      <div className="itemList">
-        {items.map((item) => {
-          return (
-            <ListItem
-              products={props.products}
-              id={item.id}
-              deleteItem={deleteItem}
-              setItems={setItems}
-              items={items}
-              key={item.id}
-              rabat={props.rabat}
-            />
-          );
-        })}
-      </div>
+      <div className="itemList">{itemElements}</div>
       <div className="addBtn">
         <button onClick={addItem}>
           <PlusSquare color="black" />

@@ -1,8 +1,7 @@
 import "../styles/ListItem.css";
 import { Trash } from "react-bootstrap-icons";
-import { ProductInt } from "../App";
+import { ProductInt, Item } from "../App";
 import { useState, useEffect } from "react";
-import { Item } from "./List";
 
 interface Props {
   products: Array<ProductInt>;
@@ -18,6 +17,18 @@ export default function ListItem(props: Props): JSX.Element {
   const [volume, setVolume] = useState<string>("0");
   const [finalPrice, setFinalPrice] = useState<string>("0");
   const [amount, setAmount] = useState<string>("1");
+
+  useEffect(() => {
+    const item = props.items[props.id];
+    setFinalPrice(item.finalPrice.toString());
+    setAmount(item.amount.toString());
+    setVolume(item.volume.toString());
+    if (item.selectedProductId >= props.products.length) {
+      setSelectedProductId(0);
+    } else {
+      setSelectedProductId(item.selectedProductId);
+    }
+  }, [props.items]);
 
   useEffect(() => {
     if (props.products.length === 0) return;
@@ -45,14 +56,20 @@ export default function ListItem(props: Props): JSX.Element {
 
   useEffect(() => {
     const newArr = [...props.items];
-    newArr[props.id].price = parseFloat(finalPrice);
+    const item = newArr[props.id];
+    item.finalPrice = parseFloat(finalPrice);
+    item.amount = parseInt(amount);
+    item.volume = parseFloat(volume);
+    item.selectedProductId = selectedProductId;
+
     props.setItems(newArr);
-  }, [finalPrice]);
+  }, [finalPrice, amount, volume, selectedProductId]);
 
   return (
     <div className="ListItem">
       <div className="left">
         <select
+          value={selectedProductId}
           className="product"
           onChange={(e: any) => {
             setSelectedProductId(parseInt(e.target.value));

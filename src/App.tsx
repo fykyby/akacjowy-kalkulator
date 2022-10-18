@@ -17,13 +17,29 @@ export interface ProductInt {
   id: number;
 }
 
+export interface Item {
+  id: number;
+  finalPrice: number;
+  amount: number;
+  volume: number;
+  selectedProductId: number;
+}
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("List");
   const [products, setProducts] = useState<Array<ProductInt>>([]);
   const [rabat, setRabat] = useState<number>(0);
+  const [items, setItems] = useState<Array<Item>>([]);
 
   const PageObj = {
-    List: <List products={products} rabat={rabat} />,
+    List: (
+      <List
+        products={products}
+        rabat={rabat}
+        items={items}
+        setItems={setItems}
+      />
+    ),
     Calculator: undefined,
     Products: (
       <Products products={products} setProducts={setProducts} rabat={rabat} />
