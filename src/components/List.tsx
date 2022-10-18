@@ -16,8 +16,6 @@ export default function List(props: Props): JSX.Element {
   const [itemElements, setItemElements] = useState<Array<JSX.Element>>();
 
   useEffect(() => {
-    console.log(props.items);
-
     const newElements = props.items.map((item) => {
       return (
         <ListItem
