@@ -10,6 +10,7 @@ interface Props {
   deleteItem(id: number): void;
   setItems(itemArr: Array<Item>): void;
   items: Array<Item>;
+  rabat: number;
 }
 
 export default function ListItem(props: Props): JSX.Element {
@@ -32,8 +33,12 @@ export default function ListItem(props: Props): JSX.Element {
         newAmount = amount;
       }
 
-      const newPrice =
-        selectedProduct.price * parseFloat(volume) * parseInt(newAmount);
+      let newPrice = selectedProduct.price * parseFloat(volume);
+      if (parseFloat(volume) >= props.products[selectedProductId].rabat) {
+        newPrice = newPrice - newPrice * (props.rabat / 100);
+      }
+      newPrice = newPrice * parseInt(newAmount);
+
       setFinalPrice(newPrice.toFixed(2));
     }
   }, [selectedProductId, volume, props.products, amount]);

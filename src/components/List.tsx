@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 
 interface Props {
   products: Array<ProductInt>;
+  rabat: number;
 }
 
 export interface Item {
@@ -56,6 +57,7 @@ export default function List(props: Props): JSX.Element {
               setItems={setItems}
               items={items}
               key={item.id}
+              rabat={props.rabat}
             />
           );
         })}

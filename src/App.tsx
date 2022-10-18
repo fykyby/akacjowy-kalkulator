@@ -20,21 +20,26 @@ export interface ProductInt {
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("List");
   const [products, setProducts] = useState<Array<ProductInt>>([]);
+  const [rabat, setRabat] = useState<number>(0);
 
   const PageObj = {
-    List: <List products={products} />,
+    List: <List products={products} rabat={rabat} />,
     Calculator: undefined,
-    Products: <Products products={products} setProducts={setProducts} />,
+    Products: (
+      <Products products={products} setProducts={setProducts} rabat={rabat} />
+    ),
   };
 
   useEffect(() => {
     storage.setDataPath(os.homedir() + "/SwiatAkacji");
-    storage.get("produkty", (error: any, data: any) => {
+    storage.get("data", (error: any, data: any) => {
       if (error) throw error;
-      if (!Array.isArray(data)) {
+      if (!Array.isArray(data.produkty)) {
         setProducts([]);
+        setRabat(0);
       } else {
-        setProducts(data);
+        setProducts(data.produkty);
+        setRabat(data.rabat);
       }
     });
   }, [currentPage]);

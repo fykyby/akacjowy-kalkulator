@@ -2,7 +2,7 @@ import "../styles/Products.css";
 import Product from "./Product";
 import { PlusSquare } from "react-bootstrap-icons";
 import { ProductInt } from "../App";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import AddProduct from "./AddProduct";
 
@@ -12,21 +12,41 @@ const storage = window.require("electron-json-storage");
 interface Props {
   products: Array<ProductInt>;
   setProducts(products: Array<ProductInt>): void;
+  rabat: number;
 }
 
 export default function Products(props: Props): JSX.Element {
   const [addProductWindowVisible, setAddProductWindowVisible] = useState(false);
+  const [rabatInput, setRabatInput] = useState<number>(0);
 
-  function saveProducts() {
+  useEffect(() => {
+    setRabatInput(props.rabat);
+  }, []);
+
+  function save() {
     storage.setDataPath(os.homedir() + "/SwiatAkacji");
-    storage.set("produkty", props.products);
+    storage.set("data", {
+      produkty: props.products,
+      rabat: rabatInput,
+    });
   }
 
   return (
     <div className="Products">
       <div className="header">
         <div>Produkty</div>
-        <button onClick={saveProducts}>Zapisz</button>
+        <button onClick={save}>Zapisz</button>
+      </div>
+      <div className="rabatInputContainer">
+        Rabat
+        <input
+          type="number"
+          value={rabatInput}
+          onChange={(e) => {
+            setRabatInput(parseInt(e.target.value));
+          }}
+        />
+        %
       </div>
       <div className="columns">
         <div className="produktColumn">Produkt</div>
