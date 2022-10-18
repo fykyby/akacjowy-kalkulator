@@ -43,7 +43,7 @@ export default function List(props: Props): JSX.Element {
     const newArr = [...props.items];
     newArr.push({
       id: newArr.length,
-      amount: 0,
+      amount: 1,
       finalPrice: 0,
       selectedProductId: 0,
       volume: 0,

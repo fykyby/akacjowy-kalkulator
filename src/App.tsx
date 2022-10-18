@@ -9,7 +9,7 @@ import "./styles/App.css";
 const os = require("os");
 const storage = window.require("electron-json-storage");
 
-type Page = "List" | "Calculator" | "Products";
+export type Page = "List" | "Calculator" | "Products";
 
 export interface ProductInt {
   name: string;
