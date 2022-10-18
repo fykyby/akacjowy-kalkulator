@@ -60,9 +60,16 @@ export default function List(props: Props): JSX.Element {
     props.setItems(newArr);
   }
 
+  function resetItems() {
+    props.setItems([]);
+  }
+
   return (
     <div className="List">
       <div className="finalInfo">
+        <div className="reset">
+          <button onClick={resetItems}>Reset</button>
+        </div>
         <div className="finalPrice">{finalPrice} zł</div>
       </div>
       <div className="itemList">{itemElements}</div>

@@ -10,9 +10,15 @@
   padding-block: 8px;
   padding-inline: 16px;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
   font-size: 48px;
+}
+
+.List .finalInfo .reset button {
+  color: white;
+  font-size: 30px;
+  padding: 8px;
 }
 
 .List .itemList {
