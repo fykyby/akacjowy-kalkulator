@@ -35,12 +35,16 @@
       "oneClick": false
     },
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "public"
+    },
+    "win": {
+      "icon": "public/icon.png"
     },
     "files": [
       "dist/**/*",
       "build/**/*",
       "node_modules/**/*",
+      "public/**/*",
       "package.json"
     ]
   },

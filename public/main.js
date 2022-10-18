@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require("electron");
 const isDev = require("electron-is-dev");
 const path = require("path");
+
 require("@electron/remote/main").initialize();
 
 function createWindow() {
@@ -12,6 +13,7 @@ function createWindow() {
       nodeIntegration: true,
       contextIsolation: false,
     },
+    autoHideMenuBar: true,
   });
 
   win.loadURL(
