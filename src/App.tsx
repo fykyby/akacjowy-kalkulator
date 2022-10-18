@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar";
 import Products from "./components/Products";
 import "./styles/App.css";
 
-// const fs = window.require("fs");
 const os = require("os");
 const storage = window.require("electron-json-storage");
 
@@ -27,13 +26,13 @@ export interface Item {
 }
 
 export interface CaluclatorData {
-  mm: string;
-  cm: string;
-  p1: string;
-  p2: string;
-  p3: string;
-  w1: string;
-  w2: string;
+  mm: number;
+  cm: number;
+  p1: number;
+  p2: number;
+  p3: number;
+  w1: number;
+  w2: number;
 }
 
 export default function App() {
@@ -42,13 +41,13 @@ export default function App() {
   const [rabat, setRabat] = useState<number>(0);
   const [items, setItems] = useState<Array<Item>>([]);
   const [calculatorData, setCalculatorData] = useState<CaluclatorData>({
-    mm: "",
-    cm: "",
-    p1: "",
-    p2: "",
-    p3: "",
-    w1: "",
-    w2: "",
+    mm: 0,
+    cm: 0,
+    p1: 0,
+    p2: 0,
+    p3: 0,
+    w1: 0,
+    w2: 0,
   });
 
   const PageObj = {

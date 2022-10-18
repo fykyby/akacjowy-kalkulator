@@ -30,28 +30,6 @@ export default function ListItem(props: Props): JSX.Element {
     }
   }, [props.items]);
 
-  // useEffect(() => {
-  //   if (props.products.length === 0) return;
-  //   const selectedProduct = props.products[selectedProductId];
-  //   if (volume === "") {
-  //     setFinalPrice("0.00");
-  //     return;
-  //   } else {
-  //     let newAmount;
-  //     if (amount === "") {
-  //       newAmount = "0";
-  //     } else {
-  //       newAmount = amount;
-  //     }
-  //     let newPrice = selectedProduct.price * parseFloat(volume);
-  //     if (parseFloat(volume) >= props.products[selectedProductId].rabat) {
-  //       newPrice = newPrice - newPrice * (props.rabat / 100);
-  //     }
-  //     newPrice = newPrice * parseInt(newAmount);
-  //     setFinalPrice(newPrice.toFixed(2));
-  //   }
-  // }, [selectedProductId, volume, props.products, amount]);
-
   useEffect(() => {
     const selectedProduct = props.products[selectedProductId];
 

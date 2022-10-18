@@ -1,6 +1,5 @@
 import { CaluclatorData } from "../App";
 import "../styles/Calculator.css";
-import { useEffect } from "react";
 
 interface Props {
   calculatorData: CaluclatorData;
@@ -8,10 +7,6 @@ interface Props {
 }
 
 export default function Calculator(props: Props): JSX.Element {
-  // useEffect(() => {
-  //   // console.log(1);
-  // }, [props.calculatorData]);
-
   function handleChange(e: any, key: keyof CaluclatorData) {
     const newObj = { ...props.calculatorData };
     newObj[key] = e.target.value;
@@ -20,9 +15,9 @@ export default function Calculator(props: Props): JSX.Element {
 
   function getPVol() {
     const val =
-      parseFloat(props.calculatorData.p1) *
-      parseFloat(props.calculatorData.p2) *
-      parseFloat(props.calculatorData.p3);
+      props.calculatorData.p1 *
+      props.calculatorData.p2 *
+      props.calculatorData.p3;
     if (isNaN(val)) {
       return 0;
     } else {
@@ -33,9 +28,8 @@ export default function Calculator(props: Props): JSX.Element {
   function getWVol() {
     const val =
       Math.PI *
-      (parseFloat(props.calculatorData.w1) *
-        parseFloat(props.calculatorData.w1)) *
-      parseFloat(props.calculatorData.w2);
+      (props.calculatorData.w1 * props.calculatorData.w1) *
+      props.calculatorData.w2;
     if (isNaN(val)) {
       return 0;
     } else {
@@ -54,11 +48,7 @@ export default function Calculator(props: Props): JSX.Element {
             value={props.calculatorData.mm}
             type="number"
           />
-          mm ={" "}
-          {props.calculatorData.mm === ""
-            ? 0
-            : (parseFloat(props.calculatorData.mm) / 1000).toFixed(3)}{" "}
-          m
+          mm = {(props.calculatorData.mm / 1000).toFixed(3)} m
         </div>
         <div className="cmToM">
           <input
@@ -68,11 +58,7 @@ export default function Calculator(props: Props): JSX.Element {
             value={props.calculatorData.cm}
             type="number"
           />
-          cm ={" "}
-          {props.calculatorData.cm === ""
-            ? 0
-            : (parseFloat(props.calculatorData.cm) / 100).toFixed(3)}{" "}
-          m
+          cm = {(props.calculatorData.cm / 100).toFixed(3)} m
         </div>
       </div>
       <div className="prostopadloscian">
