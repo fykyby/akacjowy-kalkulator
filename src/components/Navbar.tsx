@@ -18,13 +18,12 @@ export default function Navbar(props: Props): JSX.Element {
         >
           <TagsFill />
         </button>
-        {/* <button
+        <button
           onClick={() => props.setCurrentPage("Calculator")}
           className={props.currentPage === "Calculator" ? "active" : ""}
-          disabled
         >
           <CalculatorFill />
-        </button> */}
+        </button>
         <button
           onClick={() => props.setCurrentPage("Products")}
           className={props.currentPage === "Products" ? "active" : ""}

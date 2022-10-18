@@ -1,0 +1,64 @@
+.Calculator {
+  background-color: var(--color3);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  font-size: 20px;
+  padding-inline: 20px;
+  padding-block: 48px;
+}
+
+.Calculator > * {
+  width: 80%;
+  max-width: var(--maxWidth);
+  display: flex;
+  background-color: var(--color3_dark);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.Calculator .topContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.Calculator input {
+  background-color: var(--color2);
+  color: white;
+  height: 36px;
+  width: 100px;
+}
+
+.Calculator input::placeholder {
+  text-align: center;
+}
+
+.Calculator .prostopadloscian,
+.Calculator .walec {
+  flex-direction: column;
+  gap: 18px;
+}
+
+.Calculator .inputContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.Calculator .prostopadloscian .inputs,
+.Calculator .walec .inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.Calculator .title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+}

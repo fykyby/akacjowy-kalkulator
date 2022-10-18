@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Calculator from "./components/Calculator";
 import List from "./components/List";
 import Navbar from "./components/Navbar";
 import Products from "./components/Products";
@@ -25,11 +26,30 @@ export interface Item {
   selectedProductId: number;
 }
 
+export interface CaluclatorData {
+  mm: string;
+  cm: string;
+  p1: string;
+  p2: string;
+  p3: string;
+  w1: string;
+  w2: string;
+}
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("List");
   const [products, setProducts] = useState<Array<ProductInt>>([]);
   const [rabat, setRabat] = useState<number>(0);
   const [items, setItems] = useState<Array<Item>>([]);
+  const [calculatorData, setCalculatorData] = useState<CaluclatorData>({
+    mm: "",
+    cm: "",
+    p1: "",
+    p2: "",
+    p3: "",
+    w1: "",
+    w2: "",
+  });
 
   const PageObj = {
     List: (
@@ -40,7 +60,12 @@ export default function App() {
         setItems={setItems}
       />
     ),
-    Calculator: undefined,
+    Calculator: (
+      <Calculator
+        calculatorData={calculatorData}
+        setCalculatorData={setCalculatorData}
+      />
+    ),
     Products: (
       <Products products={products} setProducts={setProducts} rabat={rabat} />
     ),

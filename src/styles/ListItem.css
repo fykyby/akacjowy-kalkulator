@@ -32,6 +32,7 @@
 
 .ListItem .left .bottom .volume {
   height: 100%;
+  display: flex;
 }
 
 .ListItem .left .bottom .amount {
