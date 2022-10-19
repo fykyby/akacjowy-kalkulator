@@ -31,20 +31,29 @@
   width: 100px;
 }
 
-.Product .delete {
+.Product .buttons {
+  display: flex;
+  width: 88px;
+}
+
+.Product .delete,
+.Product .edit {
   display: flex;
   justify-content: center;
   height: 100%;
   width: 44px;
 }
 
-.Product .delete button {
+.Product .delete button,
+.Product .edit button {
   padding: 8px;
 }
-.Product .delete button > * {
+.Product .delete button > *,
+.Product .edit button {
   font-size: 24px;
 }
 
-.Product .delete button:hover {
+.Product .delete button:hover,
+.Product .edit button:hover {
   background-color: var(--color1);
 }

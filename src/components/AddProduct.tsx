@@ -1,12 +1,14 @@
 import "../styles/AddProduct.css";
 import { CheckSquare, XSquare } from "react-bootstrap-icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ProductInt } from "../App";
 
 interface Props {
   hide(): void;
   setProducts(products: Array<ProductInt>): void;
   products: Array<ProductInt>;
+  editMode?: boolean;
+  data?: ProductInt;
 }
 
 export default function AddProduct(props: Props): JSX.Element {
@@ -14,13 +16,21 @@ export default function AddProduct(props: Props): JSX.Element {
   const [price, setPrice] = useState<string>("");
   const [rabat, setRabat] = useState<string>("");
 
+  useEffect(() => {
+    if (props.data) {
+      setName(props.data.name);
+      setPrice(props.data.price.toString());
+      setRabat(props.data.rabat.toString());
+    }
+  }, []);
+
   function add() {
     if (name === "" || price === "" || rabat === "") return;
 
     const newProduct: ProductInt = {
       name: name,
-      price: parseInt(price),
-      rabat: parseInt(rabat),
+      price: parseFloat(price),
+      rabat: parseFloat(rabat),
       id: 999,
     };
     const newArr = [...props.products];
@@ -29,7 +39,21 @@ export default function AddProduct(props: Props): JSX.Element {
       item.id = index;
     });
     props.setProducts(newArr);
+    props.hide();
+  }
 
+  function edit() {
+    if (name === "" || price === "" || rabat === "" || !props.data) return;
+
+    const newProduct: ProductInt = {
+      name: name,
+      price: parseFloat(price),
+      rabat: parseFloat(rabat),
+      id: props.data.id,
+    };
+    const newArr = [...props.products];
+    newArr[props.data.id] = newProduct;
+    props.setProducts(newArr);
     props.hide();
   }
 
@@ -69,7 +93,7 @@ export default function AddProduct(props: Props): JSX.Element {
         <button onClick={props.hide}>
           <XSquare color="black" />
         </button>
-        <button onClick={add}>
+        <button onClick={props.editMode ? edit : add}>
           <CheckSquare color="black" />
         </button>
       </div>

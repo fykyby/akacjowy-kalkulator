@@ -65,7 +65,7 @@ export default function Products(props: Props): JSX.Element {
         <div className="rabatColumn">
           Rabat ({`>`}m<sup>3</sup>)
         </div>
-        <div className="deleteColumn"></div>
+        <div className="buttonsColumn"></div>
       </div>
       <div className="productList">
         {props.products.map((data, index) => {
