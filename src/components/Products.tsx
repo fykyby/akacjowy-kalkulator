@@ -31,6 +31,32 @@ export default function Products(props: Props): JSX.Element {
     });
   }
 
+  function moveUp(id: number) {
+    if (id === 0) return;
+
+    const newArr = [...props.products];
+    const a = newArr[id - 1];
+    newArr[id - 1] = newArr[id];
+    newArr[id] = a;
+    newArr.forEach((product, index) => {
+      product.id = index;
+    });
+    props.setProducts(newArr);
+  }
+
+  function moveDown(id: number) {
+    if (id === props.products.length - 1) return;
+
+    const newArr = [...props.products];
+    const a = newArr[id + 1];
+    newArr[id + 1] = newArr[id];
+    newArr[id] = a;
+    newArr.forEach((product, index) => {
+      product.id = index;
+    });
+    props.setProducts(newArr);
+  }
+
   return (
     <div className="Products">
       <div className="header">
@@ -58,6 +84,7 @@ export default function Products(props: Props): JSX.Element {
         </button>
       </div>
       <div className="columns">
+        <div className="moveColumn"></div>
         <div className="produktColumn">Produkt</div>
         <div className="cenaColumn">
           Cena za m<sup>3</sup> (zł)
@@ -75,6 +102,8 @@ export default function Products(props: Props): JSX.Element {
               setProducts={props.setProducts}
               products={props.products}
               key={index}
+              moveUp={moveUp}
+              moveDown={moveDown}
             />
           );
         })}

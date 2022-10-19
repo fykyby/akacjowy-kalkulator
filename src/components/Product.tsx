@@ -1,5 +1,5 @@
 import "../styles/Product.css";
-import { Trash, PencilSquare } from "react-bootstrap-icons";
+import { Trash, PencilSquare, ArrowUp, ArrowDown } from "react-bootstrap-icons";
 import { ProductInt } from "../App";
 import { useState } from "react";
 import Modal from "./Modal";
@@ -9,6 +9,8 @@ interface Props {
   data: ProductInt;
   products: Array<ProductInt>;
   setProducts(products: Array<ProductInt>): void;
+  moveUp(id: number): void;
+  moveDown(id: number): void;
 }
 
 export default function Product(props: Props): JSX.Element {
@@ -25,6 +27,17 @@ export default function Product(props: Props): JSX.Element {
 
   return (
     <div className="Product">
+      <div className="move">
+        <button onClick={() => props.moveUp(props.data.id)} className="upBtn">
+          <ArrowUp color="black" />
+        </button>
+        <button
+          onClick={() => props.moveDown(props.data.id)}
+          className="downBtn"
+        >
+          <ArrowDown color="black" />
+        </button>
+      </div>
       <div className="name">{props.data.name}</div>
       <div className="price">{props.data.price}</div>
       <div className="rabat">{props.data.rabat}</div>

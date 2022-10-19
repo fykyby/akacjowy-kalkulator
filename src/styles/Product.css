@@ -9,7 +9,7 @@
   box-shadow: var(--shadow);
 }
 
-.Product div:not(:first-child) {
+.Product div {
   text-align: center;
 }
 
@@ -17,6 +17,25 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.Product .move {
+  width: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2px;
+}
+
+.Product .move button {
+  font-size: 24px;
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.Product .move button:hover {
+  background-color: var(--color1);
 }
 
 .Product .name {
