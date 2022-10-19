@@ -74,15 +74,6 @@ export default function Products(props: Props): JSX.Element {
         />
         %
       </div>
-      <div className="addBtn">
-        <button
-          onClick={() => {
-            setAddProductWindowVisible(true);
-          }}
-        >
-          <PlusSquare color="black" />
-        </button>
-      </div>
       <div className="columns">
         <div className="moveColumn"></div>
         <div className="produktColumn">Produkt</div>
@@ -93,6 +84,15 @@ export default function Products(props: Props): JSX.Element {
           Rabat ({`>`}m<sup>3</sup>)
         </div>
         <div className="buttonsColumn"></div>
+      </div>
+      <div className="addBtn">
+        <button
+          onClick={() => {
+            setAddProductWindowVisible(true);
+          }}
+        >
+          <PlusSquare color="black" />
+        </button>
       </div>
       <div className="productList">
         {props.products.map((data, index) => {
