@@ -14,15 +14,17 @@ export interface ProductInt {
   name: string;
   price: number;
   rabat: number;
-  id: number;
+  id: string;
+  index: number;
 }
 
 export interface Item {
-  id: number;
+  index: number;
   finalPrice: number;
   amount: number;
   volume: number;
-  selectedProductId: number;
+  // selectedProductName: string;
+  selectedProductId: string;
 }
 
 export interface CaluclatorData {

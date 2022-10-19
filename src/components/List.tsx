@@ -20,16 +20,16 @@ export default function List(props: Props): JSX.Element {
       return (
         <ListItem
           products={props.products}
-          id={item.id}
+          index={item.index}
           deleteItem={deleteItem}
           setItems={props.setItems}
           items={props.items}
-          key={item.id}
+          key={item.index}
           rabat={props.rabat}
         />
       );
     });
-    setItemElements([...newElements]);
+    setItemElements([...newElements].reverse());
 
     let newPrice = 0;
     props.items.forEach((item) => {
@@ -42,20 +42,20 @@ export default function List(props: Props): JSX.Element {
   function addItem() {
     const newArr = [...props.items];
     newArr.push({
-      id: newArr.length,
+      index: newArr.length,
       amount: 1,
       finalPrice: 0,
-      selectedProductId: 0,
       volume: 0,
+      selectedProductId: props.products[0].id,
     });
     props.setItems(newArr);
   }
 
-  function deleteItem(id: number) {
+  function deleteItem(index: number) {
     const newArr = [...props.items];
-    newArr.splice(id, 1);
+    newArr.splice(index, 1);
     newArr.forEach((item, index) => {
-      item.id = index;
+      item.index = index;
     });
     props.setItems(newArr);
   }

@@ -31,12 +31,17 @@ export default function AddProduct(props: Props): JSX.Element {
       name: name,
       price: parseFloat(price),
       rabat: parseFloat(rabat),
-      id: 999,
+      index: 999,
+      id:
+        Date.now().toString(36) +
+        Math.floor(
+          Math.pow(10, 12) + Math.random() * 9 * Math.pow(10, 12)
+        ).toString(36),
     };
     const newArr = [...props.products];
     newArr.push(newProduct);
     newArr.forEach((item, index) => {
-      item.id = index;
+      item.index = index;
     });
     props.setProducts(newArr);
     props.hide();
@@ -50,9 +55,10 @@ export default function AddProduct(props: Props): JSX.Element {
       price: parseFloat(price),
       rabat: parseFloat(rabat),
       id: props.data.id,
+      index: props.data.index,
     };
     const newArr = [...props.products];
-    newArr[props.data.id] = newProduct;
+    newArr[props.data.index] = newProduct;
     props.setProducts(newArr);
     props.hide();
   }

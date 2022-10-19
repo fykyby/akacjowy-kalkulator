@@ -5,36 +5,49 @@ import { useState, useEffect } from "react";
 
 interface Props {
   products: Array<ProductInt>;
-  id: number;
-  deleteItem(id: number): void;
+  index: number;
+  deleteItem(index: number): void;
   setItems(itemArr: Array<Item>): void;
   items: Array<Item>;
   rabat: number;
 }
 
 export default function ListItem(props: Props): JSX.Element {
-  const [selectedProductId, setSelectedProductId] = useState<number>(0);
+  const [selectedProductId, setSelectedProductId] = useState<string>("");
   const [volume, setVolume] = useState<number>(1);
   const [finalPrice, setFinalPrice] = useState<number>(0);
   const [amount, setAmount] = useState<number>(1);
 
   useEffect(() => {
-    const item = props.items[props.id];
+    const item = props.items[props.index];
     setFinalPrice(item.finalPrice);
     setAmount(item.amount);
     setVolume(item.volume);
-    if (item.selectedProductId >= props.products.length) {
-      setSelectedProductId(0);
-    } else {
-      setSelectedProductId(item.selectedProductId);
-    }
+    setSelectedProductId(item.selectedProductId);
   }, [props.items]);
 
   useEffect(() => {
-    const selectedProduct = props.products[selectedProductId];
+    const selectedProduct = props.products.find((el) => {
+      if (el.id === selectedProductId) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    if (!selectedProduct) {
+      const newArr = [...props.items];
+      const item = newArr[props.index];
+      item.amount = 1;
+      item.volume = 0;
+      item.finalPrice = 0;
+
+      props.setItems(newArr);
+      return;
+    }
 
     let newPrice = selectedProduct.price * volume;
-    if (volume >= props.products[selectedProductId].rabat) {
+    if (volume >= props.products[selectedProduct.index].rabat) {
       newPrice = newPrice - newPrice * (props.rabat / 100);
     }
     newPrice = newPrice * amount;
@@ -46,11 +59,12 @@ export default function ListItem(props: Props): JSX.Element {
     }
 
     const newArr = [...props.items];
-    const item = newArr[props.id];
+    const item = newArr[props.index];
     item.amount = amount;
     item.volume = volume;
     item.selectedProductId = selectedProductId;
     item.finalPrice = newPrice;
+
     props.setItems(newArr);
   }, [amount, volume, selectedProductId]);
 
@@ -61,7 +75,7 @@ export default function ListItem(props: Props): JSX.Element {
           value={selectedProductId}
           className="product"
           onChange={(e: any) => {
-            setSelectedProductId(parseInt(e.target.value));
+            setSelectedProductId(e.target.value);
           }}
         >
           {props.products.map((item) => {
@@ -100,7 +114,7 @@ export default function ListItem(props: Props): JSX.Element {
       <div className="right">
         <button
           className="deleteBtn"
-          onClick={() => props.deleteItem(props.id)}
+          onClick={() => props.deleteItem(props.index)}
         >
           <Trash color="black" />
         </button>

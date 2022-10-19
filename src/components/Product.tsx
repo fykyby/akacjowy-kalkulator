@@ -18,9 +18,9 @@ export default function Product(props: Props): JSX.Element {
 
   function deleteProduct() {
     const newArr = [...props.products];
-    newArr.splice(props.data.id, 1);
+    newArr.splice(props.data.index, 1);
     newArr.forEach((item, index) => {
-      item.id = index;
+      item.index = index;
     });
     props.setProducts(newArr);
   }
@@ -28,11 +28,14 @@ export default function Product(props: Props): JSX.Element {
   return (
     <div className="Product">
       <div className="move">
-        <button onClick={() => props.moveUp(props.data.id)} className="upBtn">
+        <button
+          onClick={() => props.moveUp(props.data.index)}
+          className="upBtn"
+        >
           <ArrowUp color="black" />
         </button>
         <button
-          onClick={() => props.moveDown(props.data.id)}
+          onClick={() => props.moveDown(props.data.index)}
           className="downBtn"
         >
           <ArrowDown color="black" />
