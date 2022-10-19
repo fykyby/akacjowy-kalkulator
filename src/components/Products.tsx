@@ -48,6 +48,15 @@ export default function Products(props: Props): JSX.Element {
         />
         %
       </div>
+      <div className="addBtn">
+        <button
+          onClick={() => {
+            setAddProductWindowVisible(true);
+          }}
+        >
+          <PlusSquare color="black" />
+        </button>
+      </div>
       <div className="columns">
         <div className="produktColumn">Produkt</div>
         <div className="cenaColumn">
@@ -69,15 +78,6 @@ export default function Products(props: Props): JSX.Element {
             />
           );
         })}
-      </div>
-      <div className="addBtn">
-        <button
-          onClick={() => {
-            setAddProductWindowVisible(true);
-          }}
-        >
-          <PlusSquare color="black" />
-        </button>
       </div>
       {addProductWindowVisible ? (
         <Modal

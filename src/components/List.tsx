@@ -72,12 +72,12 @@ export default function List(props: Props): JSX.Element {
         </div>
         <div className="finalPrice">{finalPrice} zł</div>
       </div>
-      <div className="itemList">{itemElements}</div>
       <div className="addBtn">
         <button onClick={addItem}>
           <PlusSquare color="black" />
         </button>
       </div>
+      <div className="itemList">{itemElements}</div>
     </div>
   );
 }
