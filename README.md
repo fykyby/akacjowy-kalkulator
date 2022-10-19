@@ -1,6 +1,6 @@
 # Akacjowy Kalkulator
 
-Desktop app for SwiatAkacji.pl made with Electron. Lets user store products and calculate their prices.
+Desktop app made for SwiatAkacji.pl with Electron. Lets user store products and calculate their prices.
 
 ## Run Locally
 
