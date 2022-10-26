@@ -38,9 +38,6 @@ export default function Products(props: Props): JSX.Element {
     const a = newArr[id - 1];
     newArr[id - 1] = newArr[id];
     newArr[id] = a;
-    newArr.forEach((product, index) => {
-      product.index = index;
-    });
     props.setProducts(newArr);
   }
 
@@ -51,9 +48,6 @@ export default function Products(props: Props): JSX.Element {
     const a = newArr[id + 1];
     newArr[id + 1] = newArr[id];
     newArr[id] = a;
-    newArr.forEach((product, index) => {
-      product.index = index;
-    });
     props.setProducts(newArr);
   }
 
@@ -99,6 +93,7 @@ export default function Products(props: Props): JSX.Element {
           return (
             <Product
               data={data}
+              index={index}
               setProducts={props.setProducts}
               products={props.products}
               key={index}

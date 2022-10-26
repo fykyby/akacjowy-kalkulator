@@ -15,15 +15,12 @@ export interface ProductInt {
   price: number;
   rabat: number;
   id: string;
-  index: number;
 }
 
 export interface Item {
-  index: number;
   finalPrice: number;
   amount: number;
   volume: number;
-  // selectedProductName: string;
   selectedProductId: string;
 }
 

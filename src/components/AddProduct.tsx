@@ -9,6 +9,7 @@ interface Props {
   products: Array<ProductInt>;
   editMode?: boolean;
   data?: ProductInt;
+  index?: number;
 }
 
 export default function AddProduct(props: Props): JSX.Element {
@@ -31,7 +32,6 @@ export default function AddProduct(props: Props): JSX.Element {
       name: name,
       price: parseFloat(price),
       rabat: parseFloat(rabat),
-      index: 999,
       id:
         Date.now().toString(36) +
         Math.floor(
@@ -40,25 +40,29 @@ export default function AddProduct(props: Props): JSX.Element {
     };
     const newArr = [...props.products];
     newArr.push(newProduct);
-    newArr.forEach((item, index) => {
-      item.index = index;
-    });
+
     props.setProducts(newArr);
     props.hide();
   }
 
   function edit() {
-    if (name === "" || price === "" || rabat === "" || !props.data) return;
+    if (
+      name === "" ||
+      price === "" ||
+      rabat === "" ||
+      !props.data ||
+      !props.index
+    )
+      return;
 
     const newProduct: ProductInt = {
       name: name,
       price: parseFloat(price),
       rabat: parseFloat(rabat),
       id: props.data.id,
-      index: props.data.index,
     };
     const newArr = [...props.products];
-    newArr[props.data.index] = newProduct;
+    newArr[props.index] = newProduct;
     props.setProducts(newArr);
     props.hide();
   }

@@ -7,6 +7,7 @@ import AddProduct from "./AddProduct";
 
 interface Props {
   data: ProductInt;
+  index: number;
   products: Array<ProductInt>;
   setProducts(products: Array<ProductInt>): void;
   moveUp(id: number): void;
@@ -18,26 +19,17 @@ export default function Product(props: Props): JSX.Element {
 
   function deleteProduct() {
     const newArr = [...props.products];
-    newArr.splice(props.data.index, 1);
-    newArr.forEach((item, index) => {
-      item.index = index;
-    });
+    newArr.splice(props.index, 1);
     props.setProducts(newArr);
   }
 
   return (
     <div className="Product">
       <div className="move">
-        <button
-          onClick={() => props.moveUp(props.data.index)}
-          className="upBtn"
-        >
+        <button onClick={() => props.moveUp(props.index)} className="upBtn">
           <ArrowUp color="black" />
         </button>
-        <button
-          onClick={() => props.moveDown(props.data.index)}
-          className="downBtn"
-        >
+        <button onClick={() => props.moveDown(props.index)} className="downBtn">
           <ArrowDown color="black" />
         </button>
       </div>
@@ -67,6 +59,7 @@ export default function Product(props: Props): JSX.Element {
               products={props.products}
               editMode
               data={props.data}
+              index={props.index}
             />
           }
           hide={() => {

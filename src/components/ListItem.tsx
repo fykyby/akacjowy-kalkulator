@@ -27,13 +27,11 @@ export default function ListItem(props: Props): JSX.Element {
   }, [props.items]);
 
   useEffect(() => {
-    const selectedProduct = props.products.find((el) => {
-      if (el.id === selectedProductId) {
-        return true;
-      } else {
-        return false;
-      }
+    const selectedProductIndex = props.products.findIndex((el) => {
+      return el.id === selectedProductId;
     });
+
+    const selectedProduct = props.products[selectedProductIndex];
 
     if (!selectedProduct) {
       const newArr = [...props.items];
@@ -47,7 +45,7 @@ export default function ListItem(props: Props): JSX.Element {
     }
 
     let newPrice = selectedProduct.price * volume;
-    if (volume >= props.products[selectedProduct.index].rabat) {
+    if (volume >= props.products[selectedProductIndex].rabat) {
       newPrice = newPrice - newPrice * (props.rabat / 100);
     }
     newPrice = newPrice * amount;

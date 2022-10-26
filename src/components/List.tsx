@@ -16,15 +16,15 @@ export default function List(props: Props): JSX.Element {
   const [itemElements, setItemElements] = useState<Array<JSX.Element>>();
 
   useEffect(() => {
-    const newElements = props.items.map((item) => {
+    const newElements = props.items.map((item, index) => {
       return (
         <ListItem
           products={props.products}
-          index={item.index}
+          index={index}
           deleteItem={deleteItem}
           setItems={props.setItems}
           items={props.items}
-          key={item.index}
+          key={index}
           rabat={props.rabat}
         />
       );
@@ -42,7 +42,6 @@ export default function List(props: Props): JSX.Element {
   function addItem() {
     const newArr = [...props.items];
     newArr.push({
-      index: newArr.length,
       amount: 1,
       finalPrice: 0,
       volume: 0,
@@ -54,9 +53,9 @@ export default function List(props: Props): JSX.Element {
   function deleteItem(index: number) {
     const newArr = [...props.items];
     newArr.splice(index, 1);
-    newArr.forEach((item, index) => {
-      item.index = index;
-    });
+    // newArr.forEach((item, index) => {
+    //   item.index = index;
+    // });
     props.setItems(newArr);
   }
 
