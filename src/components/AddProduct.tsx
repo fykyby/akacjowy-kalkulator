@@ -14,24 +14,24 @@ interface Props {
 
 export default function AddProduct(props: Props): JSX.Element {
   const [name, setName] = useState<string>("");
-  const [price, setPrice] = useState<string>("");
-  const [rabat, setRabat] = useState<string>("");
+  const [price, setPrice] = useState<number>(0);
+  const [rabat, setRabat] = useState<number>(0);
 
   useEffect(() => {
     if (props.data) {
       setName(props.data.name);
-      setPrice(props.data.price.toString());
-      setRabat(props.data.rabat.toString());
+      setPrice(props.data.price);
+      setRabat(props.data.rabat);
     }
   }, []);
 
   function add() {
-    if (name === "" || price === "" || rabat === "") return;
+    if (name === "" || isNaN(price) || isNaN(rabat)) return;
 
     const newProduct: ProductInt = {
       name: name,
-      price: parseFloat(price),
-      rabat: parseFloat(rabat),
+      price: price,
+      rabat: rabat,
       id:
         Date.now().toString(36) +
         Math.floor(
@@ -48,8 +48,8 @@ export default function AddProduct(props: Props): JSX.Element {
   function edit() {
     if (
       name === "" ||
-      price === "" ||
-      rabat === "" ||
+      isNaN(price) ||
+      isNaN(rabat) ||
       !props.data ||
       !props.index
     )
@@ -57,8 +57,8 @@ export default function AddProduct(props: Props): JSX.Element {
 
     const newProduct: ProductInt = {
       name: name,
-      price: parseFloat(price),
-      rabat: parseFloat(rabat),
+      price: price,
+      rabat: rabat,
       id: props.data.id,
     };
     const newArr = [...props.products];
@@ -83,7 +83,7 @@ export default function AddProduct(props: Props): JSX.Element {
         <input
           value={price}
           onChange={(e) => {
-            setPrice(e.target.value);
+            setPrice(parseFloat(e.target.value));
           }}
           className="price"
           type="number"
@@ -92,7 +92,7 @@ export default function AddProduct(props: Props): JSX.Element {
         <input
           value={rabat}
           onChange={(e) => {
-            setRabat(e.target.value);
+            setRabat(parseFloat(e.target.value));
           }}
           className="rabat"
           type="number"
