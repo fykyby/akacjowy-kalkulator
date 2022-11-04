@@ -30,8 +30,10 @@ export interface CaluclatorData {
   p1: number;
   p2: number;
   p3: number;
+  pAmount: number;
   w1: number;
   w2: number;
+  wAmount: number;
 }
 
 export default function App() {
@@ -44,8 +46,10 @@ export default function App() {
     p1: 0,
     p2: 0,
     p3: 0,
+    pAmount: 1,
     w1: 0,
     w2: 0,
+    wAmount: 1,
   });
 
   const PageObj = {

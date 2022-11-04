@@ -17,7 +17,8 @@ export default function Calculator(props: Props): JSX.Element {
     const val =
       props.calculatorData.p1 *
       props.calculatorData.p2 *
-      props.calculatorData.p3;
+      props.calculatorData.p3 *
+      props.calculatorData.pAmount;
     if (isNaN(val)) {
       return 0;
     } else {
@@ -99,6 +100,16 @@ export default function Calculator(props: Props): JSX.Element {
               m
             </span>
           </div>
+          <span>
+            x{" "}
+            <input
+              onChange={(e) => {
+                handleChange(e, "pAmount");
+              }}
+              value={props.calculatorData.pAmount}
+              type="number"
+            />
+          </span>
           <div className="finalVal">
             = {getPVol()} m<sup>3</sup>
           </div>
@@ -131,6 +142,16 @@ export default function Calculator(props: Props): JSX.Element {
               m
             </span>
           </div>
+          <span>
+            x{" "}
+            <input
+              onChange={(e) => {
+                handleChange(e, "wAmount");
+              }}
+              value={props.calculatorData.wAmount}
+              type="number"
+            />
+          </span>
           <div className="finalVal">
             = {getWVol()} m<sup>3</sup>
           </div>
