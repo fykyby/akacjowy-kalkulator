@@ -96,7 +96,6 @@ export default function ListItem(props: Props): JSX.Element {
             </span>
           </div>
           <div className="amount">
-            <span>%</span>
             <input
               type="number"
               value={rabat}
@@ -110,6 +109,7 @@ export default function ListItem(props: Props): JSX.Element {
               }}
               max={100}
             />
+            <span>%</span>
           </div>
         </div>
       </div>
