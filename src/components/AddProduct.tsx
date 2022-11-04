@@ -14,8 +14,8 @@ interface Props {
 
 export default function AddProduct(props: Props): JSX.Element {
   const [name, setName] = useState<string>("");
-  const [price, setPrice] = useState<number>(0);
-  const [rabat, setRabat] = useState<number>(0);
+  const [price, setPrice] = useState<number>(NaN);
+  const [rabat, setRabat] = useState<number>(NaN);
 
   useEffect(() => {
     if (props.data) {

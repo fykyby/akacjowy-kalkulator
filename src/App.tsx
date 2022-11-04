@@ -72,13 +72,12 @@ export default function App() {
   useEffect(() => {
     storage.setDataPath(os.homedir() + "/SwiatAkacji");
     storage.get("data", (error: any, data: any) => {
-      if (error) throw error;
       if (!Array.isArray(data.produkty)) {
         setProducts([]);
-        setRabat(0);
+        // setRabat(0);
       } else {
         setProducts(data.produkty);
-        setRabat(data.rabat);
+        // setRabat(data.rabat);
       }
     });
   }, [currentPage]);
