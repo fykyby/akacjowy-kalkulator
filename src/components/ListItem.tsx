@@ -9,19 +9,18 @@ interface Props {
   deleteItem(index: number): void;
   setItems(itemArr: Array<Item>): void;
   items: Array<Item>;
-  rabat: number;
 }
 
 export default function ListItem(props: Props): JSX.Element {
   const [selectedProductId, setSelectedProductId] = useState<string>("");
   const [volume, setVolume] = useState<number>(1);
   const [finalPrice, setFinalPrice] = useState<number>(0);
-  const [amount, setAmount] = useState<number>(1);
+  const [rabat, setRabat] = useState<number>(0);
 
   useEffect(() => {
     const item = props.items[props.index];
     setFinalPrice(item.finalPrice);
-    setAmount(item.amount);
+    setRabat(item.rabat);
     setVolume(item.volume);
     setSelectedProductId(item.selectedProductId);
   }, [props.items]);
@@ -36,7 +35,7 @@ export default function ListItem(props: Props): JSX.Element {
     if (!selectedProduct) {
       const newArr = [...props.items];
       const item = newArr[props.index];
-      item.amount = 1;
+      item.rabat = 0;
       item.volume = 0;
       item.finalPrice = 0;
 
@@ -46,25 +45,24 @@ export default function ListItem(props: Props): JSX.Element {
 
     let newPrice = selectedProduct.price * volume;
     if (volume >= props.products[selectedProductIndex].rabat) {
-      newPrice = newPrice - newPrice * (props.rabat / 100);
+      newPrice = newPrice - newPrice * (rabat / 100);
     }
-    newPrice = newPrice * amount;
 
     if (!isNaN(newPrice)) {
       setFinalPrice(newPrice);
     } else {
       setFinalPrice(0);
     }
-
     const newArr = [...props.items];
     const item = newArr[props.index];
-    item.amount = amount;
+
+    item.rabat = rabat;
     item.volume = volume;
     item.selectedProductId = selectedProductId;
     item.finalPrice = newPrice;
 
     props.setItems(newArr);
-  }, [amount, volume, selectedProductId]);
+  }, [rabat, volume, selectedProductId]);
 
   return (
     <div className="ListItem">
@@ -98,13 +96,19 @@ export default function ListItem(props: Props): JSX.Element {
             </span>
           </div>
           <div className="amount">
-            <span>x</span>
+            <span>%</span>
             <input
               type="number"
-              value={amount}
+              value={rabat}
               onChange={(e: any) => {
-                setAmount(e.target.value);
+                if (e.target.value > 100) setRabat(100);
+                else if (e.target.value < 0) {
+                  setRabat(0);
+                } else {
+                  setRabat(e.target.value);
+                }
               }}
+              max={100}
             />
           </div>
         </div>

@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 
 interface Props {
   products: Array<ProductInt>;
-  rabat: number;
   items: Array<Item>;
   setItems(items: Array<Item>): void;
 }
@@ -25,7 +24,6 @@ export default function List(props: Props): JSX.Element {
           setItems={props.setItems}
           items={props.items}
           key={index}
-          rabat={props.rabat}
         />
       );
     });
@@ -36,13 +34,14 @@ export default function List(props: Props): JSX.Element {
       if (item.finalPrice === undefined) return;
       newPrice += item.finalPrice;
     });
+
     setFinalPrice(newPrice.toFixed(2));
   }, [props.items]);
 
   function addItem() {
     const newArr = [...props.items];
     newArr.push({
-      amount: 1,
+      rabat: 0,
       finalPrice: 0,
       volume: 0,
       selectedProductId: props.products[0].id,
@@ -53,9 +52,6 @@ export default function List(props: Props): JSX.Element {
   function deleteItem(index: number) {
     const newArr = [...props.items];
     newArr.splice(index, 1);
-    // newArr.forEach((item, index) => {
-    //   item.index = index;
-    // });
     props.setItems(newArr);
   }
 

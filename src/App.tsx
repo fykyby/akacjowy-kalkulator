@@ -19,7 +19,7 @@ export interface ProductInt {
 
 export interface Item {
   finalPrice: number;
-  amount: number;
+  rabat: number;
   volume: number;
   selectedProductId: string;
 }
@@ -37,7 +37,6 @@ export interface CaluclatorData {
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("List");
   const [products, setProducts] = useState<Array<ProductInt>>([]);
-  const [rabat, setRabat] = useState<number>(0);
   const [items, setItems] = useState<Array<Item>>([]);
   const [calculatorData, setCalculatorData] = useState<CaluclatorData>({
     mm: 0,
@@ -50,23 +49,14 @@ export default function App() {
   });
 
   const PageObj = {
-    List: (
-      <List
-        products={products}
-        rabat={rabat}
-        items={items}
-        setItems={setItems}
-      />
-    ),
+    List: <List products={products} items={items} setItems={setItems} />,
     Calculator: (
       <Calculator
         calculatorData={calculatorData}
         setCalculatorData={setCalculatorData}
       />
     ),
-    Products: (
-      <Products products={products} setProducts={setProducts} rabat={rabat} />
-    ),
+    Products: <Products products={products} setProducts={setProducts} />,
   };
 
   useEffect(() => {
@@ -74,10 +64,8 @@ export default function App() {
     storage.get("data", (error: any, data: any) => {
       if (!Array.isArray(data.produkty)) {
         setProducts([]);
-        // setRabat(0);
       } else {
         setProducts(data.produkty);
-        // setRabat(data.rabat);
       }
     });
   }, [currentPage]);

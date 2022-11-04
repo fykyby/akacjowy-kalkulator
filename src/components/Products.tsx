@@ -12,22 +12,15 @@ const storage = window.require("electron-json-storage");
 interface Props {
   products: Array<ProductInt>;
   setProducts(products: Array<ProductInt>): void;
-  rabat: number;
 }
 
 export default function Products(props: Props): JSX.Element {
   const [addProductWindowVisible, setAddProductWindowVisible] = useState(false);
-  // const [rabatInput, setRabatInput] = useState<number>(0);
-
-  // useEffect(() => {
-  //   setRabatInput(props.rabat);
-  // }, []);
 
   function save() {
     storage.setDataPath(os.homedir() + "/SwiatAkacji");
     storage.set("data", {
       produkty: props.products,
-      // rabat: rabatInput,
     });
   }
 
@@ -57,17 +50,6 @@ export default function Products(props: Props): JSX.Element {
         <div>Produkty</div>
         <button onClick={save}>Zapisz</button>
       </div>
-      {/* <div className="rabatInputContainer">
-        Rabat
-        <input
-          type="number"
-          value={rabatInput}
-          onChange={(e) => {
-            setRabatInput(parseInt(e.target.value));
-          }}
-        />
-        %
-      </div> */}
       <div className="columns">
         <div className="moveColumn"></div>
         <div className="produktColumn">Produkt</div>
