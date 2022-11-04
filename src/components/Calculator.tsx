@@ -19,6 +19,7 @@ export default function Calculator(props: Props): JSX.Element {
       props.calculatorData.p2 *
       props.calculatorData.p3 *
       props.calculatorData.pAmount;
+
     if (isNaN(val)) {
       return 0;
     } else {
@@ -30,7 +31,9 @@ export default function Calculator(props: Props): JSX.Element {
     const val =
       Math.PI *
       (props.calculatorData.w1 * props.calculatorData.w1) *
-      props.calculatorData.w2;
+      props.calculatorData.w2 *
+      props.calculatorData.wAmount;
+
     if (isNaN(val)) {
       return 0;
     } else {
