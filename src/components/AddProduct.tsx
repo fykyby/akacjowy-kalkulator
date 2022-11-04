@@ -51,7 +51,7 @@ export default function AddProduct(props: Props): JSX.Element {
       isNaN(price) ||
       isNaN(rabat) ||
       !props.data ||
-      !props.index
+      props.index === undefined
     )
       return;
 
